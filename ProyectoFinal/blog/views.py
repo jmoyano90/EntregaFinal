@@ -5,15 +5,39 @@ from django.shortcuts import render
 from blog.models import Articulo, Autor, Seccion
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
 
-def buscar(request):
+def buscar_articulo(request):
     if request.method == "GET":
-        return render(request, "blog/formulario-de-busqueda.html")
+        return render(request, "blog/formulario-de-busqueda-articulo.html")
     
     if request.method == "POST":
         titulo_para_buscar = request.POST.get("titulo")
         resultados_de_busqueda = Articulo.objects.filter(titulo=titulo_para_buscar)
+        
         contexto = {"resultados":resultados_de_busqueda}
-        return render(request, "blog/resultados-de-la-busquedas.html", context=contexto)
+        return render(request, "blog/resultado-de-la-busqueda-articulo.html", context=contexto)
+
+def buscar_autor(request):
+    if request.method == "GET":
+        return render(request, "blog/formulario-de-busqueda-autor.html")
+    
+    if request.method == "POST":
+        nombre_para_buscar = request.POST.get("nombre")
+        resultados_de_busqueda_autor = Autor.objects.filter(nombre=nombre_para_buscar)
+        
+        contexto = {"resultados":resultados_de_busqueda_autor}
+        return render(request, "blog/resultado-de-la-busqueda-autor.html", context=contexto)
+
+def buscar_seccion(request):
+    if request.method == "GET":
+        return render(request, "blog/formulario-de-busqueda-seccion.html")
+    
+    if request.method == "POST":
+        nombre_para_buscar = request.POST.get("nombre")
+        resultados_de_busqueda_autor = Seccion.objects.filter(nombre=nombre_para_buscar)
+        
+        contexto = {"resultados":resultados_de_busqueda_autor}
+        return render(request, "blog/resultado-de-la-busqueda-seccion.html", context=contexto) 
+
 
 def mostrar_inicio(request):
     return render(request, "blog/inicio.html")

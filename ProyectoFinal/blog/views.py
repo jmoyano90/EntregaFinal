@@ -5,6 +5,37 @@ from blog.models import Articulo, Autor, Seccion
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import ListView 
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse
+
+class SeccionList(ListView):    
+    model = Seccion
+    template_name = "blog/secciones_list.html"
+
+class SeccionDetalle(DetailView):
+    model: Seccion
+    template_name = "blog/secciones_detalle.html"
+
+class SeccionCreacion(CreateView):
+    model = Seccion
+    fields = ["nombre"]
+    
+    def get_success_url(self):
+        return reverse("SeccionList")
+
+class SecccionUpdateView(UpdateView):
+    model = Seccion
+    success_url = "/blog/seccion/list"
+    fields = ["nombre"]
+
+class SeccionDelete(DeleteView):
+    model = Seccion
+    success_url = "/blog/seccion/list"
+
+
+
 
 def buscar_articulo(request):
     if request.method == "GET":
@@ -108,6 +139,7 @@ def procesar_fomulario_seccion(request):
 
     contexto = {"formulario": mi_formulario}
     return render(request, "blog/formulario-seccion.html", context=contexto)
+
 
 class MyLogin(LoginView):
     template_name = "blog/login.html"

@@ -9,7 +9,9 @@ from blog.views import (
     buscar_articulo,
     buscar_autor,
     buscar_seccion,
-    
+    MyLogin,
+    MyLogout,
+    register,
 )
 
 
@@ -21,4 +23,7 @@ urlpatterns = [
     path("buscar-articulo/", buscar_articulo),
     path("buscar-autor/", buscar_autor),
     path("buscar-seccion/", buscar_seccion),
+    path("login/", MyLogin.as_view(), name="Login"),
+    path("logout/", MyLogout.as_view(), name="Logout"),
+    path("register/", register, name="Register")
 ]

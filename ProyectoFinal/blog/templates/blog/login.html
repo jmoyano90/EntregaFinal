@@ -1,4 +1,6 @@
 {% extends "blog/madre.html" %}
+{% load static %}
+
 {% block contenido %}
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articulos</title>
+    <title>Bienvenido a nuestro Blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
@@ -41,18 +43,12 @@
           </div>
         </div>
       </nav>
-      <h4>Por favor, introduzca su articulo:</h4>
 </body>
 </html>
-{% if formulario.errors %}
-<p style="color: red;"> Error: alguno de los datos ingresados es incorrecto, revisar</p> 
-{% endif %}
-
-<form action="" method="POST">{% csrf_token %}
-    <table>
-        {{ formulario.as_table }}
-    </table>
-    <input type="submit" value="Guardar modelo">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br><br>
+    <button type="submit" name="submit">Iniciar sesión</button>
 </form>
-
 {% endblock %}

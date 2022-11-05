@@ -1,9 +1,10 @@
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render
-
 from blog.models import Articulo, Autor, Seccion
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
 
 def buscar_articulo(request):
     if request.method == "GET":
@@ -107,3 +108,22 @@ def procesar_fomulario_seccion(request):
 
     contexto = {"formulario": mi_formulario}
     return render(request, "blog/formulario-seccion.html", context=contexto)
+
+class MyLogin(LoginView):
+    template_name = "blog/login.html"
+
+class MyLogout(LogoutView):
+    template_name = "blog/logout.html"
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username_capturado = form.cleaned_data["username"]
+            form.save()
+            return render(request, "blog/inicio.html", {"mensaje": f"Usuario: {username_capturado}"})
+    else:
+        form = UserCreationForm()
+    return render(request, "blog/register.html", {"form": form})
+
+

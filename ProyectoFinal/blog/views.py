@@ -10,6 +10,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 
+
+#SECCION
 class SeccionList(ListView):    
     model = Seccion
     template_name = "blog/secciones_list.html"
@@ -34,8 +36,30 @@ class SeccionDelete(DeleteView):
     model = Seccion
     success_url = "/blog/seccion/list"
 
+#ARTICULO#############################################################################################
+class ArticuloList(ListView):    
+    model = Articulo
+    template_name = "blog/articulos_list.html"
 
+class ArticuloDetalle(DetailView):
+    model: Articulo
+    template_name = "blog/articulos_detalle.html"
 
+class ArticuloCreacion(CreateView):
+    model = Articulo
+    fields = ["titulo", "texto", "fecha"]
+    
+    def get_success_url(self):
+        return reverse("ArticuloList")
+
+class ArticuloUpdateView(UpdateView):
+    model = Articulo
+    success_url = "/blog/articulo/list"
+    fields = ["titulo", "texto", "fecha"]
+
+class ArticuloDelete(DeleteView):
+    model = Articulo
+    success_url = "/blog/articulo/list"
 
 def buscar_articulo(request):
     if request.method == "GET":
@@ -73,73 +97,6 @@ def buscar_seccion(request):
 
 def mostrar_inicio(request):
     return render(request, "blog/inicio.html")
-
-
-def procesar_fomulario_autor(request):
-
-    if request.method == "GET":
-        mi_formulario = AutorForm()
-        contexto = {"formulario": mi_formulario}
-        return render(request, "blog/formulario-autor.html", context=contexto)
-
-    if request.method == "POST":
-        mi_formulario = AutorForm(request.POST)
-        if mi_formulario.is_valid():
-            datos_ingresados_por_usuario = mi_formulario.cleaned_data
-            nuevo_modelo = Autor(
-                nombre=datos_ingresados_por_usuario["nombre"],
-                apellido=datos_ingresados_por_usuario["apellido"],
-                profesion=datos_ingresados_por_usuario["profesion"],
-            )
-        nuevo_modelo.save()
-
-    contexto = {"formulario": mi_formulario}
-    return render(request, "blog/formulario-autor.html", context=contexto)
-
-
-def procesar_fomulario_articulo(request):
-
-    if request.method == "GET":
-        mi_formulario = ArticuloForm()
-        contexto = {"formulario": mi_formulario}
-        return render(request, "blog/formulario-articulo.html", context=contexto)
-
-    if request.method == "POST":
-
-        mi_formulario = ArticuloForm(request.POST)
-        if mi_formulario.is_valid():
-            datos_ingresados_por_usuario = mi_formulario.cleaned_data
-            nuevo_modelo = Articulo(
-                titulo=datos_ingresados_por_usuario["titulo"],
-                texto=datos_ingresados_por_usuario["texto"],
-                fecha=datos_ingresados_por_usuario["fecha"],
-            )
-        nuevo_modelo.save()
-
-    contexto = {"formulario": mi_formulario}
-    return render(request, "blog/formulario-articulo.html", context=contexto)
-
-
-def procesar_fomulario_seccion(request):
-
-    if request.method == "GET":
-        mi_formulario = SeccionForm()
-        contexto = {"formulario": mi_formulario}
-        return render(request, "blog/formulario-seccion.html", context=contexto)
-
-    if request.method == "POST":
-
-        mi_formulario = SeccionForm(request.POST)
-        if mi_formulario.is_valid():
-            datos_ingresados_por_usuario = mi_formulario.cleaned_data
-            nuevo_modelo = Seccion(
-                nombre=datos_ingresados_por_usuario["nombre"],
-            )
-        nuevo_modelo.save()
-
-    contexto = {"formulario": mi_formulario}
-    return render(request, "blog/formulario-seccion.html", context=contexto)
-
 
 class MyLogin(LoginView):
     template_name = "blog/login.html"

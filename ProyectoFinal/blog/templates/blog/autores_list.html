@@ -1,19 +1,79 @@
-<h1> Autores de Blog </h1>
-<ul>
-    {% for autor in object_list %}
-
-    <li>
-        <p> Nombre: {{ autor.nombre }} </p>
-        <p> Apellido: {{ autor.apellido }} </p>
-        <p> Profesion: {{ autor.profesion }} </p>
-        <p>
-            <a href="{% url 'AutorDetail' autor.id %}"> Ver autores </a> 
-            <a href="{% url 'AutorUpdate' autor.id %}"> Editar </a>
-            <a href="{% url 'AutorDelete' autor.id %}"> Borrar </a>
-        </p>
-
-    </li>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'Autor' %}">Autores</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Articulo' %}">Articulos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Seccion' %}">Secciones</a>
+              </li>
+              {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Login' %}">Login</a>
+              </li>
+              {% endif %}
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
+              </li>
+              {% endif %}
+              {% if not request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Register' %}">Register</a>
+              </li>
+              {% endif %}
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'EditarPerfil' %}">Editar Perfil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'AgregarAvatar' %}">Agregar Avatar</a>
+              </li>
+              <li class="avatar">
+                <img height="40px" src="{{ avatar }}"/>
+              </li>
+              {% endif %}
+          </ul>
+          </div>
+        </div>
+      </nav>
+      <h1> Autores de Blog </h1>
+      <ul>
+          {% for autor in object_list %}
+      
+          <li>
+              <p> Nombre: {{ autor.nombre }} </p>
+              <p> Apellido: {{ autor.apellido }} </p>
+              <p> Profesion: {{ autor.profesion }} </p>
+              <p>
+                  <a href="{% url 'AutorDetail' autor.id %}"> Ver autores </a> 
+                  <a href="{% url 'AutorUpdate' autor.id %}"> Editar </a>
+                  <a href="{% url 'AutorDelete' autor.id %}"> Borrar </a>
+              </p>
+      
+          </li>
+          {% endfor %}
+      </ul>
+</body>
+</html>
 
    

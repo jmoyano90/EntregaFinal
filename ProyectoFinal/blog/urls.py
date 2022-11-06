@@ -36,12 +36,12 @@ urlpatterns = [
     path("seccion/list", SeccionList.as_view(), name="SeccionList"),
     path("r'(?P<pk>\d+)^$'", SeccionDetalle.as_view(), name="SeccionDetail"),
     path("seccion-nuevo/", SeccionCreacion.as_view(), name="SeccionNew"),
-    path("r'editar/(?P<pk>\d+)^$'", SecccionUpdateView.as_view(), name="SeccionUpdate"),
-    path("r'borrar/(?P<pk>\d+)^$'", SeccionDelete.as_view(), name="SeccionDelete"),
+    path("secccion-editar/<pk>", SecccionUpdateView.as_view(), name="SeccionUpdate"),
+    path("secccion-borrar/<pk>", SeccionDelete.as_view(), name="SeccionDelete"),
     #ARTTICULO
     path("articulo/list", ArticuloList.as_view(), name="ArticuloList"),
     path("r'(?P<pk>\d+)^$'", ArticuloDetalle.as_view(), name="ArticuloDetail"),
     path("articulo-nuevo/", ArticuloCreacion.as_view(), name="ArticuloNew"),
-    path("r'editar/(?P<pk>\d+)^$'", ArticuloUpdateView.as_view(), name="ArticuloUpdate"),
-    path("r'borrar/(?P<pk>\d+)^$'", ArticuloDelete.as_view(), name="ArticuloDelete"),
+    path("articulo-editar/<pk>", ArticuloUpdateView.as_view(), name="ArticuloUpdate"),
+    path("articulo-borrar/<pk>", ArticuloDelete.as_view(), name="ArticuloDelete"),
     ]

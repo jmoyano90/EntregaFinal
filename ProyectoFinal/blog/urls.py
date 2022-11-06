@@ -24,11 +24,15 @@ from blog.views import (
     ArticuloCreacion,
     ArticuloUpdateView,
     ArticuloDelete,
+    editar_perfil,
+    agregar_avatar,
 )
 
 
 urlpatterns = [
     path("inicio/", mostrar_inicio, name="Inicio"),
+    path("editar_perfil/", editar_perfil, name="EditarPerfil"),
+    path("agregar_avatar/", agregar_avatar, name="AgregarAvatar"),
     #BUSCADOR
     path("buscar-articulo/", buscar_articulo, name="Articulo"),
     path("buscar-autor/", buscar_autor, name="Autor"),
@@ -55,4 +59,4 @@ urlpatterns = [
     path("autor-nuevo/", AutorCreacion.as_view(), name="AutorNew"),
     path("autor-editar/<pk>", AutorUpdateView.as_view(), name="AutorUpdate"),
     path("autor-borrar/<pk>", AutorDelete.as_view(), name="AutorDelete"),
-    ]
+]

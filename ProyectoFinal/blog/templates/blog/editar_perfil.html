@@ -1,9 +1,7 @@
 {% extends "blog/madre.html" %}
-
 {% load static %}
 
 {% block contenido %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,13 +60,12 @@
           </div>
         </div>
       </nav>
-      <h4>Por favor, introduzca su sección:</h4>
+    <h4>Editando perfil de: <i>{{ user }}</i></h4>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
-
-<form action="/blog/buscar-articulo/" method="POST">{% csrf_token %}
-    <p><input type="text" name="titulo" id="titulo"></p>
-    <input type="submit" value="Buscar articulo">
-</form>
-
 {% endblock %}

@@ -1,16 +1,18 @@
 from multiprocessing import context
 from django.http import HttpResponse
 from django.shortcuts import render
-from blog.models import Articulo, Autor, Seccion
+from blog.models import Articulo, Autor, Seccion, Avatar
 from blog.forms import ArticuloForm, AutorForm, SeccionForm
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.views.generic import ListView 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from blog.forms import AvatarForm, UserEditionForm
+
 
 
 #SECCION############################################################################################
@@ -122,7 +124,12 @@ def buscar_seccion(request):
 
 @login_required
 def mostrar_inicio(request):
-    return render(request, "blog/inicio.html")
+    avatar = Avatar.objects.filter(user=request.user).first()
+    if avatar is not None:
+        context = {"avatar": avatar.imagen.url}
+    else:
+        context = {}
+    return render(request, "blog/inicio.html", context)
 
 class MyLogin(LoginView):
     template_name = "blog/login.html"
@@ -141,4 +148,40 @@ def register(request):
         form = UserCreationForm()
     return render(request, "blog/register.html", {"form": form})
 
+@login_required
+def editar_perfil(request):
+    user = request.user
+    avatar = Avatar.objects.filter(user=request.user).first()
+    if request.method != "POST":
+        form = UserEditionForm(initial={"email": user.email})
+    else:
+        form = UserEditionForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user.email = data["email"]
+            user.first_name = data["first_name"]
+            user.last_name = data["last_name"]
+            user.set_password(data["password1"])
+            user.save()
+            return render(request, "blog/inicio.html", {"avatar": avatar.imagen.url})
 
+    contexto = {
+        "user": user,
+        "form": form,
+        "avatar": avatar.imagen.url
+    }
+    return render(request, "blog/editar_perfil.html", contexto)
+
+@login_required
+def agregar_avatar(request):
+    if request.method != "POST":
+        form = AvatarForm()
+    else:
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            Avatar.objects.filter(user=request.user).delete()
+            form.save()
+            return render(request, "blog/inicio.html")
+
+    contexto = {"form": form}
+    return render(request, "blog/avatar_form.html", contexto)

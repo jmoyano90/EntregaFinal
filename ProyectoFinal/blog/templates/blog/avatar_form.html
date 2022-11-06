@@ -1,7 +1,4 @@
 {% extends "blog/madre.html" %}
-
-{% load static %}
-
 {% block contenido %}
 
 <!DOCTYPE html>
@@ -62,13 +59,9 @@
           </div>
         </div>
       </nav>
-      <h4>Por favor, introduzca su sección:</h4>
-</body>
-</html>
-
-<form action="/blog/buscar-articulo/" method="POST">{% csrf_token %}
-    <p><input type="text" name="titulo" id="titulo"></p>
-    <input type="submit" value="Buscar articulo">
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
 </form>
-
 {% endblock %}

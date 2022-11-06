@@ -26,6 +26,7 @@ from blog.views import (
     ArticuloDelete,
     editar_perfil,
     agregar_avatar,
+    about,
 )
 
 
@@ -59,4 +60,6 @@ urlpatterns = [
     path("autor-nuevo/", AutorCreacion.as_view(), name="AutorNew"),
     path("autor-editar/<pk>", AutorUpdateView.as_view(), name="AutorUpdate"),
     path("autor-borrar/<pk>", AutorDelete.as_view(), name="AutorDelete"),
+    #ACERCA
+    path("about/", about, name="About"),
 ]

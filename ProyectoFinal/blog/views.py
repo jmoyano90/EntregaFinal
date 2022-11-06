@@ -88,7 +88,7 @@ class AutorDelete(LoginRequiredMixin, DeleteView):
 
 
 
-
+@login_required
 def buscar_articulo(request):
     if request.method == "GET":
         return render(request, "blog/formulario-de-busqueda-articulo.html")
@@ -100,6 +100,7 @@ def buscar_articulo(request):
         contexto = {"resultados":resultados_de_busqueda}
         return render(request, "blog/resultado-de-la-busqueda-articulo.html", context=contexto)
 
+@login_required
 def buscar_autor(request):
     if request.method == "GET":
         return render(request, "blog/formulario-de-busqueda-autor.html")
@@ -111,6 +112,7 @@ def buscar_autor(request):
         contexto = {"resultados":resultados_de_busqueda_autor}
         return render(request, "blog/resultado-de-la-busqueda-autor.html", context=contexto)
 
+@login_required
 def buscar_seccion(request):
     if request.method == "GET":
         return render(request, "blog/formulario-de-busqueda-seccion.html")
@@ -185,3 +187,7 @@ def agregar_avatar(request):
 
     contexto = {"form": form}
     return render(request, "blog/avatar_form.html", contexto)
+
+@login_required
+def about(request):
+    return render(request, "blog/about.html", {})

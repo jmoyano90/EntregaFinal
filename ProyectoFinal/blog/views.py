@@ -9,6 +9,8 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 #SECCION############################################################################################
@@ -118,7 +120,7 @@ def buscar_seccion(request):
         contexto = {"resultados":resultados_de_busqueda_autor}
         return render(request, "blog/resultado-de-la-busqueda-seccion.html", context=contexto) 
 
-
+@login_required
 def mostrar_inicio(request):
     return render(request, "blog/inicio.html")
 

@@ -30,15 +30,21 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Seccion' %}">Secciones</a>
               </li>
+              {% if not request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Login' %}">Login</a>
               </li>
+              {% endif %}
+              {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
               </li>
+              {% endif %}
+              {% if not request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'Register' %}">Register</a>
               </li>
+              {% endif %}
             </ul>
           </div>
         </div>

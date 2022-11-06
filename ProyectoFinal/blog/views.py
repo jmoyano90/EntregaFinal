@@ -11,7 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 
 
-#SECCION
+#SECCION############################################################################################
 class SeccionList(ListView):    
     model = Seccion
     template_name = "blog/secciones_list.html"
@@ -23,9 +23,8 @@ class SeccionDetalle(DetailView):
 class SeccionCreacion(CreateView):
     model = Seccion
     fields = ["nombre"]
+    success_url = "/blog/seccion/list"
     
-    def get_success_url(self):
-        return reverse("SeccionList")
 
 class SecccionUpdateView(UpdateView):
     model = Seccion
@@ -48,9 +47,7 @@ class ArticuloDetalle(DetailView):
 class ArticuloCreacion(CreateView):
     model = Articulo
     fields = ["titulo", "texto", "fecha"]
-    
-    def get_success_url(self):
-        return reverse("ArticuloList")
+    success_url = "/blog/articulo/list"
 
 class ArticuloUpdateView(UpdateView):
     model = Articulo
@@ -60,6 +57,33 @@ class ArticuloUpdateView(UpdateView):
 class ArticuloDelete(DeleteView):
     model = Articulo
     success_url = "/blog/articulo/list"
+
+#AUTOR#############################################################################################
+class AutorList(ListView):    
+    model = Autor
+    template_name = "blog/autores_list.html"
+
+class AutorDetalle(DetailView):
+    model: Autor
+    template_name = "blog/autores_detalle.html"
+
+class AutorCreacion(CreateView):
+    model = Autor
+    fields = ["nombre", "apellido", "profesion"]
+    success_url = "/blog/autor/list"
+    
+
+class AutorUpdateView(UpdateView):
+    model = Autor
+    success_url = "/blog/autor/list"
+    fields = ["nombre", "apellido", "profesion"]
+
+class AutorDelete(DeleteView):
+    model = Autor
+    success_url = "/blog/autor/list"
+
+
+
 
 def buscar_articulo(request):
     if request.method == "GET":

@@ -1,0 +1,19 @@
+<h1> Autores de Blog </h1>
+<ul>
+    {% for autor in object_list %}
+
+    <li>
+        <p> Nombre: {{ autor.nombre }} </p>
+        <p> Apellido: {{ autor.apellido }} </p>
+        <p> Profesion: {{ autor.profesion }} </p>
+        <p>
+            <a href="{% url 'AutorDetail' autor.id %}"> Ver autores </a> 
+            <a href="{% url 'AutorUpdate' autor.id %}"> Editar </a>
+            <a href="{% url 'AutorDelete' autor.id %}"> Borrar </a>
+        </p>
+
+    </li>
+    {% endfor %}
+</ul>
+
+   

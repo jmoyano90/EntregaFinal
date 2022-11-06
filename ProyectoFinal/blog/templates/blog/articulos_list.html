@@ -1,9 +1,10 @@
-<h1> Seccciones de Blog </h1>
+<h1> Articulos de Blog </h1>
 <ul>
     {% for articulo in object_list %}
 
     <li>
         <p> Nombre: {{ articulo.titulo }} </p>
+        <p> Fecha: {{ articulo.fecha }} </p>
         <p>
             <a href="{% url 'ArticuloDetail' articulo.id %}"> Ver Articuloes </a> 
             <a href="{% url 'ArticuloUpdate' articulo.id %}"> Editar </a>

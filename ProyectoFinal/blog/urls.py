@@ -9,6 +9,11 @@ from blog.views import (
     MyLogin,
     MyLogout,
     register,
+    AutorList,
+    AutorDetalle,
+    AutorCreacion,
+    AutorUpdateView,
+    AutorDelete,
     SeccionList,
     SeccionDetalle,
     SeccionCreacion,
@@ -34,7 +39,7 @@ urlpatterns = [
     path("register/", register, name="Register"),
     #SECCION
     path("seccion/list", SeccionList.as_view(), name="SeccionList"),
-    path("r'(?P<pk>\d+)^$'", SeccionDetalle.as_view(), name="SeccionDetail"),
+    path("seccion-detalle/<int:pk>/", SeccionDetalle.as_view(), name="SeccionDetail"),
     path("seccion-nuevo/", SeccionCreacion.as_view(), name="SeccionNew"),
     path("secccion-editar/<pk>", SecccionUpdateView.as_view(), name="SeccionUpdate"),
     path("secccion-borrar/<pk>", SeccionDelete.as_view(), name="SeccionDelete"),
@@ -44,4 +49,10 @@ urlpatterns = [
     path("articulo-nuevo/", ArticuloCreacion.as_view(), name="ArticuloNew"),
     path("articulo-editar/<pk>", ArticuloUpdateView.as_view(), name="ArticuloUpdate"),
     path("articulo-borrar/<pk>", ArticuloDelete.as_view(), name="ArticuloDelete"),
+    #AUTOR
+    path("autor/list", AutorList.as_view(), name="AutorList"),
+    path("seccion-autor/<int:pk>/", AutorDetalle.as_view(), name="AutorDetail"),
+    path("autor-nuevo/", AutorCreacion.as_view(), name="AutorNew"),
+    path("autor-editar/<pk>", AutorUpdateView.as_view(), name="AutorUpdate"),
+    path("autor-borrar/<pk>", AutorDelete.as_view(), name="AutorDelete"),
     ]

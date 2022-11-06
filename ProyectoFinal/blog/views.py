@@ -14,73 +14,73 @@ from django.contrib.auth.decorators import login_required
 
 
 #SECCION############################################################################################
-class SeccionList(ListView):    
+class SeccionList(LoginRequiredMixin, ListView):    
     model = Seccion
     template_name = "blog/secciones_list.html"
 
-class SeccionDetalle(DetailView):
+class SeccionDetalle(LoginRequiredMixin, DetailView):
     model: Seccion
     template_name = "blog/secciones_detalle.html"
 
-class SeccionCreacion(CreateView):
+class SeccionCreacion(LoginRequiredMixin, CreateView):
     model = Seccion
     fields = ["nombre"]
     success_url = "/blog/seccion/list"
     
 
-class SecccionUpdateView(UpdateView):
+class SecccionUpdateView(LoginRequiredMixin, UpdateView):
     model = Seccion
     success_url = "/blog/seccion/list"
     fields = ["nombre"]
 
-class SeccionDelete(DeleteView):
+class SeccionDelete(LoginRequiredMixin, DeleteView):
     model = Seccion
     success_url = "/blog/seccion/list"
 
 #ARTICULO#############################################################################################
-class ArticuloList(ListView):    
+class ArticuloList(LoginRequiredMixin, ListView):    
     model = Articulo
     template_name = "blog/articulos_list.html"
 
-class ArticuloDetalle(DetailView):
+class ArticuloDetalle(LoginRequiredMixin, DetailView):
     model: Articulo
     template_name = "blog/articulos_detalle.html"
 
-class ArticuloCreacion(CreateView):
+class ArticuloCreacion(LoginRequiredMixin, CreateView):
     model = Articulo
     fields = ["titulo", "texto", "fecha"]
     success_url = "/blog/articulo/list"
 
-class ArticuloUpdateView(UpdateView):
+class ArticuloUpdateView(LoginRequiredMixin, UpdateView):
     model = Articulo
     success_url = "/blog/articulo/list"
     fields = ["titulo", "texto", "fecha"]
 
-class ArticuloDelete(DeleteView):
+class ArticuloDelete(LoginRequiredMixin, DeleteView):
     model = Articulo
     success_url = "/blog/articulo/list"
 
 #AUTOR#############################################################################################
-class AutorList(ListView):    
+class AutorList(LoginRequiredMixin, ListView):    
     model = Autor
     template_name = "blog/autores_list.html"
 
-class AutorDetalle(DetailView):
+class AutorDetalle(LoginRequiredMixin, DetailView):
     model: Autor
     template_name = "blog/autores_detalle.html"
 
-class AutorCreacion(CreateView):
+class AutorCreacion(LoginRequiredMixin, CreateView):
     model = Autor
     fields = ["nombre", "apellido", "profesion"]
     success_url = "/blog/autor/list"
     
 
-class AutorUpdateView(UpdateView):
+class AutorUpdateView(LoginRequiredMixin, UpdateView):
     model = Autor
     success_url = "/blog/autor/list"
     fields = ["nombre", "apellido", "profesion"]
 
-class AutorDelete(DeleteView):
+class AutorDelete(LoginRequiredMixin, DeleteView):
     model = Autor
     success_url = "/blog/autor/list"
 

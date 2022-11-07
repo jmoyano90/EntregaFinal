@@ -76,7 +76,6 @@ class AutorCreacion(LoginRequiredMixin, CreateView):
     fields = ["nombre", "apellido", "profesion"]
     success_url = "/blog/autor/list"
     
-
 class AutorUpdateView(LoginRequiredMixin, UpdateView):
     model = Autor
     success_url = "/blog/autor/list"

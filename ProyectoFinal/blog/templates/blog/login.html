@@ -23,17 +23,17 @@
             <ul class="navbar-nav">
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'Autor' %}">Autores</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'AutorList' %}">Autores</a>
               </li>
               {% endif %}
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'Articulo' %}">Articulos</a>
+                <a class="nav-link" href="{% url 'ArticuloList' %}">Articulos</a>
               </li>
               {% endif %}
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'Seccion' %}">Secciones</a>
+                <a class="nav-link" href="{% url 'SeccionList' %}">Secciones</a>
               </li>
               {% endif %}
               {% if request.user.is_authenticated %}

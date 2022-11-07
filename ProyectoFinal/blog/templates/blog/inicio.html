@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </head>
 <body>
+  <header>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
@@ -63,11 +64,36 @@
           </div>
         </div>
       </nav>
+    </header>
+    <main>
+      <div>
       <h1>Bienvenido a nuestro blog!</h1>
       <p> Hola, {{ user.username }}!!</p>
       {% if mensaje %}
       {{ mensaje }}
       {% endif %}
+      <article class="articulo">
+        <h4>Descripción del Proyecto</h4>
+        <p>Aplicación tipo blog, con formularios de búsqueda.</p>
+      </article>
+      <article class="articulo">
+        <h4>¿En qué estado se encuentra nuestro proyecto?</h4>
+        <p>Actualmente nos encontramos en fase de desarrollo.</p>
+      </article>
+      <article class="articulo">
+        <h4>Instrucciones para hacer funcionar nuestro proyecto</h4>
+        <p>Mediante consola se debe asegurar de estar dentro de "ProyectoFinal\ProyectoFinal", luego para arrancar el servidor ingrese python manage.py runserver. Una veces arrancado el servidor "http://127.0.0.1:8000/", se debe completar la rutas de acceso con "/blog/buscar_articulo", "/blog/buscar_autor" o "/blog/buscar_seccion" para poder consultar lo datos deseados.</p>
+      </article>
+    </main>
+    <section>
+      <div class="items-center text-center">
+        <h1>¿Qué podes encontrar en nuestro blog?</h1>
+        <p class="items-center text-center" >Vas a poder encontrar artículos de distintos autores según el género que te guste.</p>
+    </section>
+    <section>
+      <span class="embed-youtube" style="text-align:center; display: block;"><iframe class="youtube-player" width="640" height="360" src="https://www.youtube.com/embed/CR9kkL9PJ1c?version=3&amp;rel=1&amp;showsearch=0&amp;showinfo=1&amp;iv_load_policy=1&amp;fs=1&amp;hl=en&amp;autohide=2&amp;wmode=transparent" allowfullscreen="true" style="border:0;" sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe></span>
+    </section>
+      </div>
 </body>
 </html>
 {% endblock %}

@@ -32,6 +32,7 @@ from blog.views import (
 
 urlpatterns = [
     path("inicio/", mostrar_inicio, name="Inicio"),
+    path("", mostrar_inicio, name=""),
     path("editar_perfil/", editar_perfil, name="EditarPerfil"),
     path("agregar_avatar/", agregar_avatar, name="AgregarAvatar"),
     #BUSCADOR

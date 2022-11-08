@@ -1,7 +1,7 @@
 <h1 align="center"> Proyecto Final </h1>
 
 <b>*#*[Descripción del proyecto]</b>
-<p>App tipo blog, con formularios de busqueda.</p>
+<p>App tipo blog, con formularios de busqueda, paginas tipo CBV, CRUD y con modulo Login.</p>
 
 <b>*#*[Estado del proyecto]</b>
 <p>Alfa en desarrollo</p>

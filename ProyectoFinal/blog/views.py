@@ -24,6 +24,7 @@ class SeccionDetalle(LoginRequiredMixin, DetailView):
     model: Seccion
     template_name = "blog/secciones_detalle.html"
 
+
 class SeccionCreacion(LoginRequiredMixin, CreateView):
     model = Seccion
     fields = ["nombre"]

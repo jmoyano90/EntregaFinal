@@ -51,7 +51,7 @@ urlpatterns = [
     path("secccion-borrar/<pk>", SeccionDelete.as_view(), name="SeccionDelete"),
     #ARTTICULO
     path("articulo/list", ArticuloList.as_view(), name="ArticuloList"),
-    path("articulo-detalle/<int:pk>/", ArticuloDetalle.as_view(), name="ArticuloDetail"),
+    path("seccion-detalle/<int:pk>/", ArticuloDetalle.as_view(), name="ArticuloDetail"),
     path("articulo-nuevo/", ArticuloCreacion.as_view(), name="ArticuloNew"),
     path("articulo-editar/<pk>", ArticuloUpdateView.as_view(), name="ArticuloUpdate"),
     path("articulo-borrar/<pk>", ArticuloDelete.as_view(), name="ArticuloDelete"),

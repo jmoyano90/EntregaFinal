@@ -8,7 +8,7 @@
 
 <b>*#*[Instrucciones]</b>
 <p> Mediante la terminal se debe asegurar de estar dentro de "EntregaFinal\ProyectoFinal>", luego para arrancar el servidor ingrese python manage.py runserver.
-Una veces arrancado el servidor "http://127.0.0.1:8000/", se debe completar la rutas de acceso con "/blog/" o "/blog/inicio", se lo redirige a la pagina login, puede inciar secion con el usario <i>"admin2"</i> password <i>"admin1234"</i> o puede registrar un nuevo usuario dando click en Register localizada en la NavBar, tambien en ella se puede navegar a lo largo del Blog donde se podran buscar, editar, crear y borrar los Autores, Articulos y Secciones del Blog.</p>
+Una veces arrancado el servidor "http://127.0.0.1:8000/", se debe completar la rutas de acceso con "/blog/" o "/blog/inicio", se lo redirige a la pagina login, puede inciar secion con el usario <i>"admin1"</i> password <i>"admin1234"</i> o puede registrar un nuevo usuario dando click en Register localizada en la NavBar, tambien en ella se puede navegar a lo largo del Blog donde se podran buscar, editar, crear y borrar los Autores, Articulos y Secciones del Blog.</p>
 
 <br><b>*#*[Links Videos]</b></br>
 https://youtu.be/dxXR-5PI4ss
